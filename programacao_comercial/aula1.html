@@ -1,0 +1,128 @@
+<html>
+	<meta charset="UTF-8">	
+
+	<head>
+	<title>Pagina inicial</title>
+	<link rel='stylesheet' type='text/css' href="css/styles.css">
+	<script type="text/javascript">
+		function soma(p1, p2){
+			var p3 = p1+p2;
+			alert('Resutado: '+p3)
+		}
+	</script>
+	</head>
+	<body style="background-color:powderblue;">
+		<h1>TESTE H1</h1>
+		<p>paragrafo</p>
+
+		<img src="img/teste.jpg" title="qqr coisa" height="80" width="80">
+		<a href="http://google.com" target="_blank">acessar nova aba google</a>
+		<a href="http://google.com" rel="nofollow" target="self">acessar google</a>
+		<br><br><br>
+
+		<h3>lista ordenada</h3>
+		<ol>
+		<li>item 1</li>
+		<li>item 1</li>
+		<li>item 1</li>
+		<li>item 1</li>
+		</ol>
+		<br>
+		<h3>lista n ordenada</h3>
+		<ul>
+		<li>item 1</li>
+		<li>item 1</li>
+		<li>item 1</li>
+		<li>item 1</li>
+		</ul>
+
+		<table class="names">
+			<caption><b>table description</b></caption>
+			<thead>
+				<tr>
+					<th>col 1</th>
+					<th>col 2</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>linha1 - c1</td>
+					<td>linha1 - c2</td>
+				</tr>
+					<tr>
+					<td>linha2 - c1</td>
+					<td>linha2 - c2</td>
+				</tr>
+				<tr>
+					<td>linha3 - c1</td>
+					<td>linha3 - c2</td>
+				</tr>
+					<tr>
+					<td>linha4 - c1</td>
+					<td>linha4 - c2</td>
+				</tr>
+			</tbody>
+		</table>
+		<form action="/cadastro/" method="post">
+			Login:<input type="text" name="login" placeholder="Digite Seu logim">
+			Senha:<input type="password" name="senha">
+
+			<input type="radio" name="sexo" value="1" checked>Masculino
+			<input type="radio" name="sexo" value="2">Feminino
+
+			<input type="checkbox" name="veiculo1" value="bike">Eu tenho uma bike
+			<input type="checkbox" name="veiculo2" value="carro">Eu tenho um carro
+
+			Curso:
+			<select name="curso">
+				<option value="1">Ciencia da Comp.</option>
+				<option value="2">Direito</option>
+				<option value="3">Eng. Eletrica</option>
+				<option value="4">Medicina</option>
+			</select>
+
+			Mensagem:<textarea name="mensagem" rows="10" cols="30"></textarea>
+			Idade:<input type="number" name="idade" min="0" max="100" step="1" value="30">
+			Data de nascimento:<input type="date" name="dt_nacimento" min="2000-01-02">
+
+
+
+			Auto comprete:<input list="cheeses">
+			<datalist id="cheeses">
+				<option>qqqqqqqqqqqq</option>
+				<option>wwwwwwwwwwwwwwwwwww</option>
+				<option>eeeeeeeeeeee</option>
+				<option>rrrrrrrrrr</option>
+				<option>tttttttt</option>
+				<option>sssss</option>
+				<option>vvvvvv</option>
+				<option>vveee</option>
+				<option>qqqwe</option>
+				<option>rfcgt</option>
+				<option>fgffg</option>
+				<option>fghfgh</option>
+				<option>mmmm</option>
+			</datalist>
+
+			<input type="hidden" name="country" value="Brasil">
+
+
+			<input type="reset" value="Limpar">
+			<input type="submit" name="Enviar">
+
+			<button type="button" onclick="alert('Hello World!')">Botao 01</button>
+
+			<button type="button" onclick="soma(5, 10);">bt 02</button>
+
+		</form>
+
+		<div id="area-mensagens">
+			Elementos de bloco
+		</div>
+
+		Elements <span class="destaque"> de </span> linha
+
+		<iframe src="aula1.html"></iframe> 
+	</body>
+</html>
+
