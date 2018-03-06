@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="js/jquery-3.3.1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/funcoes.js"></script>
+    </head>
+    <body>
+
+        <div>
+            <span class="badge badge-defalt">Defalt</span>
+            <span class="badge badge-primary">Primary</span>
+            <span class="badge badge-success">Success</span>
+            <span class="badge badge-info">Info</span>
+            <span class="badge badge-warning">Warning</span>
+            <span class="badge badge-danger">danger</span>
+        </div>
+
+        <div>
+            <a href="#">Você possui <span class="badge badge-danger">42</span>mensagens não lidas.</a>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" type="button">
+                Messagens<span class="badge">4</span>
+            </button>
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-user"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Username" />
+        </div>
+
+        <div class="jumbotron">
+            <h1 class="display-4">Programação comercial</h1>
+            <p class="lead">Aula inicial</p>
+        </div>
+
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Dropdown link
+            </a>
+              
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+
+        <div class="alert alert-primary" role="alert">
+                This is a primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+              </div>
+              <div class="alert alert-secondary" role="alert">
+                This is a secondary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+              </div>
+              <div class="alert alert-success" role="alert">
+                This is a success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+              </div>
+              <div class="alert alert-danger" role="alert">
+                This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+              </div>
+              <div class="alert alert-warning" role="alert">
+                This is a warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+              </div>
+              <div class="alert alert-info" role="alert">
+                This is a info alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+              </div>
+              <div class="alert alert-light" role="alert">
+                This is a light alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+              </div>
+              <div class="alert alert-dark" role="alert">
+                This is a dark alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+              </div>
+
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+        
+	<div class="alert-dark" id="area-01">
+		Manipulando a DOM com jquery - Teste 01
+	</div>
+	<div class="alert-warning" id="area-02">
+		Manipulando a DOM com jquery - Teste 02
+	</div>
+	<button type="button" class="btn btn-info" onclick="minhaFuncao1()">
+	executar ação 1
+	</button>
+	<button type="button" class="btn btn-danger" onclick="minhaFuncao2()">
+	executar ação 2
+	</button>
+	<button type="button" class="btn btn-success" onclick="minhaFuncao3()">
+	executar ação 3
+	</button>
+
+    </body>
+</html>
