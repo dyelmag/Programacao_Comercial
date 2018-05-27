@@ -14,13 +14,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from rest_framework import viewsets
-from .serialize import SnippetSerializer
-from rest_framework import status
+from .serialize import SnippetSerializer, CadastroSerializer
+from rest_framework import status, serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404
 from django.contrib.auth import get_user_model
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+
 
 User = get_user_model()
 
@@ -38,21 +42,29 @@ class teste(APIView):
         serializer = SnippetSerializer(snippet)
         return Response(serializer.data)
 
-class entrarAPI(APIView):
+class entrarAPI(ObtainAuthToken):
     serializer_class = SnippetSerializer
 
-    def post(self, request):
-        username = self.request.POST.get('usuario', '')
-        password = self.request.POST.get('senha', '')            
+    def post(self, request, *args, **kwargs): 
+        username = self.request.POST.get('username', '')
+        password = self.request.POST.get('password', '')            
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
-                login(request, user)
-                return(redirect('inicio'))
+                token, created = Token.objects.get_or_create(user=user)      
+                return Response({
+                    'token': token.key,
+                    'user_id': user.pk,
+                    'nome': user.username
+                })
             else:
-                print ("Sua conta foi desabilitada!")
+                return Response({
+                    'erro': 1
+                })
         else:
-            print ("Seu username e senha estavam incorretos.21111")
+            return Response({
+                    'erro': 2
+                })
 
 
 
@@ -62,6 +74,24 @@ class UsuarioNew(CreateView):
     form_class = FormularioUsuario
     template_name = 'usuario/novo.html'
     success_url = reverse_lazy('inicio')
+
+class UsuarioNewAPI(APIView):
+    serializer_class = CadastroSerializer
+
+    def post(self, validated_data):
+        user = User.objects.create(
+            username=self.request.POST.get('username', ''),
+            email=self.request.POST.get('email', ''),
+            first_name=self.request.POST.get('first_name', ''),
+            last_name=self.request.POST.get('last_name', '')
+        )
+
+        user.set_password(self.request.POST.get('password', ''))
+        user.save()
+        
+        return user
+
+
 
 
 class LoginView(FormView):

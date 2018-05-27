@@ -37,7 +37,7 @@ class CapituloInfoAPI(APIView):
     def get_object(self, pk, cp):
         try:
             cap = Capitulos.objects.get(manga=pk, cpN=cp)
-            arq = Arquivos.objects.filter(capitulo=cp)
+            arq = Arquivos.objects.filter(capitulo=cap.id)
             obj = {'cap': cap, 'arq': arq}
             return obj
         except Capitulos.DoesNotExist:
