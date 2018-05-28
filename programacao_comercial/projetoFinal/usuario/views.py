@@ -14,7 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from rest_framework import viewsets
-from .serialize import SnippetSerializer, CadastroSerializer
+from .serialize import SnippetSerializer, CadastroSerializer, PerfilSerializer
 from rest_framework import status, serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -24,22 +24,34 @@ from django.contrib.auth import get_user_model
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 User = get_user_model()
 
+
+class perfilAPI(APIView):
+   
+    def get(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = SnippetSerializer(snippet)
+        return Response(serializer.data)
+
 class teste(APIView):
-    serializer_class = SnippetSerializer
+    serializer_class = PerfilSerializer
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self, pk):
         try:
-            return User.objects.get(pk=pk)
+            return Perfil.objects.get(user=pk)
         except User.DoesNotExist:
             raise Http404
     
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = SnippetSerializer(snippet)
+        serializer = PerfilSerializer(snippet)
         return Response(serializer.data)
 
 class entrarAPI(ObtainAuthToken):
