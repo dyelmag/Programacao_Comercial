@@ -38,9 +38,13 @@
                         <div class="card-block">
                             <div class="card-title">
                                 <a href="{%url 'add:manga' %}{{aux.id}}" >{{aux.titulo}}</a>
+                                
                             </div>
                             <div class="card-text">
-                                Tags: {{aux.tags}}
+                                Tags: {{aux.tags}}<br>
+                                 {% if user == object %}
+                                    <a href="/add/manga/delete/{{aux.id}}/">Excluir</a>
+                                 {% endif %}
                             </div>
                         </div>
                     </div>

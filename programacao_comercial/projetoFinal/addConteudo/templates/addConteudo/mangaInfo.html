@@ -35,6 +35,9 @@
                 
                  {% for aux in cap %}
                     <a href="{{aux.cpN}}/">{{aux.cpN}} - {{aux.titulo}}</a>
+                     {% if user == manga.autor %}
+                    <a href="/add/manga/delete/{{pk}}/{{aux.cpN}}/"> - Excluir</a>
+                    {% endif %}
                     <br> 
                 {% endfor %}           
     

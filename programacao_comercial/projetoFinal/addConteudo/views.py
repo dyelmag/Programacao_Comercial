@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, FormView, CreateView, TemplateView
+from django.views.generic import ListView, FormView, CreateView, TemplateView, DeleteView
 from django.views import View
 from .models import Conteudo, Manga, Arquivos, Capitulos
 from .forms import FormularioManga
@@ -31,6 +31,36 @@ class mangaInfoAPI(APIView):
         snippet = self.get_object(pk)
         serializer = mangaDetalhes(snippet)
         return Response(serializer.data)
+
+
+class mangaDelete(DeleteView):
+    model = Manga
+    template_name = 'addConteudo/deletarMG.html'
+
+    def get_success_url(self, **kwargs):
+        if kwargs != None:
+            return reverse_lazy('usuario:perfil', kwargs={'pk': self.object.autor.id})
+        else:
+            return reverse_lazy('usuario:perfil', args=(self.object.autor.id,))
+
+
+class capDelete(TemplateView):
+    model = Capitulos
+    template_name = 'addConteudo/deletarCP.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        manga = Manga.objects.get(pk=kwargs['pk'])
+        cap = Capitulos.objects.get(manga=manga, cpN=kwargs['cp'])
+        context['manga'] = manga
+        context['cap'] = cap
+
+        return context
+
+    def post(self, request, pk, cp):
+        aux = Capitulos.objects.get(manga=pk, cpN=cp)
+        aux.delete()
+        return(redirect('/add/manga/{0}/'.format(pk)))
 
 class CapituloInfoAPI(APIView):
 
@@ -72,8 +102,6 @@ class postManga(CreateView):
             data = {
                 'pk': self.object.pk,
             }
-            print('-----')
-            print(self.object.pk)
             return JsonResponse(data)
         else:
             return response
